@@ -1,128 +1,187 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "leaflet/dist/leaflet.css";
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
-
+.leaflet-container {
+  z-index: 0 !important;
+}
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Retro Game Palette */
+    --background: 140 30% 85%;
+    --foreground: 0 0% 5%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 45 40% 88%;
+    --card-foreground: 0 0% 5%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 45 40% 88%;
+    --popover-foreground: 0 0% 5%;
 
-    --primary: 122 39% 49%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 140 60% 35%;
+    --primary-foreground: 140 40% 95%;
 
-    --secondary: 207 90% 54%;
+    --secondary: 200 50% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 45 25% 75%;
+    --muted-foreground: 0 0% 30%;
 
-    --accent: 43 96% 56%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 35 80% 55%;
+    --accent-foreground: 0 0% 5%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 140 60% 35%;
 
-    --success: 122 39% 49%;
-    --success-foreground: 0 0% 100%;
-
-    --nasa-blue: 217 89% 28%;
-    --nasa-blue-foreground: 0 0% 100%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 122 39% 49%;
-
-    --radius: 0.75rem;
-
-    /* Gradient stops for time-of-day backgrounds */
-    --morning-start: 205 79% 92%;
-    --morning-end: 207 89% 67%;
+    --radius: 0rem;
     
-    --day-start: 207 89% 67%;
-    --day-end: 207 90% 61%;
-    
-    --night-start: 217 83% 34%;
-    --night-end: 262 47% 28%;
+    /* Retro Game Colors */
+    --retro-water: 200 80% 50%;
+    --retro-grass: 120 60% 40%;
+    --retro-soil: 30 50% 40%;
+    --retro-sky: 200 60% 70%;
+    --retro-ui-bg: 45 40% 88%;
+    --retro-ui-border: 0 0% 20%;
 
-    --space-start: 217 89% 28%;
-    --space-end: 262 47% 28%;
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 140 20% 15%;
+    --foreground: 140 40% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 140 40% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 140 40% 95%;
 
-    --primary: 122 39% 49%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 140 50% 50%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 207 90% 54%;
+    --secondary: 200 40% 30%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 25%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 43 96% 56%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 35 70% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 0 0% 100%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
-
-    --success: 122 39% 49%;
-    --success-foreground: 0 0% 100%;
-
-    --nasa-blue: 217 89% 28%;
-    --nasa-blue-foreground: 0 0% 100%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 122 39% 49%;
+    --border: 0 0% 30%;
+    --input: 0 0% 30%;
+    --ring: 140 50% 50%;
+    
+    --retro-water: 200 70% 40%;
+    --retro-grass: 120 50% 30%;
+    --retro-soil: 30 40% 30%;
+    --retro-sky: 200 40% 50%;
+    --retro-ui-bg: 0 0% 12%;
+    --retro-ui-border: 0 0% 40%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Courier New', monospace;
   }
+}
 
-  /* Pixel art rendering */
-  img[style*="pixelated"],
-  .pixel-art {
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-crisp-edges;
+@layer utilities {
+  .pixel-perfect {
     image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
   }
-
-  /* Retro pixel font */
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
   
-  .pixel-font {
-    font-family: 'Press Start 2P', monospace;
+  .retro-border {
+    border: 4px solid hsl(var(--retro-ui-border));
+    box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.25), inset 4px 4px 0 rgba(255, 255, 255, 0.25);
+  }
+  
+  .retro-shadow {
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  .scanline {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+    pointer-events: none;
+  }
+  
+  .retro-text-shadow {
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  .blink {
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes pixelate-in {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  
+  .pixelate-in {
+    animation: pixelate-in 0.5s ease-out;
   }
 }

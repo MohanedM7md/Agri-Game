@@ -9,7 +9,18 @@ export interface GameState {
   totalFertilizer: number;
   totalPesticide: number;
 }
+export interface Region {
+  id: string;
+  name: string;
+  description: string;
+}
 
+export interface Crop {
+  id: string;
+  name: string;
+  emoji: string;
+  description: string;
+}
 export interface GameEvent {
   title: string;
   description: string;
@@ -30,22 +41,26 @@ export const OPTIMAL_RANGES = {
 export const GAME_EVENTS: GameEvent[] = [
   {
     title: "Unexpected Drought!",
-    description: "The weather forecast shows no rain for the next week. Your crops are showing signs of stress.",
+    description:
+      "The weather forecast shows no rain for the next week. Your crops are showing signs of stress.",
     options: [
       {
         label: "Water heavily every day",
         isCorrect: false,
-        feedback: "Too much water can lead to root rot and nutrient leaching. Moderation is key!",
+        feedback:
+          "Too much water can lead to root rot and nutrient leaching. Moderation is key!",
       },
       {
         label: "Increase watering moderately and add mulch",
         isCorrect: true,
-        feedback: "Excellent! Moderate watering with mulch helps retain moisture efficiently.",
+        feedback:
+          "Excellent! Moderate watering with mulch helps retain moisture efficiently.",
       },
       {
         label: "Wait for rain and do nothing",
         isCorrect: false,
-        feedback: "Your crops need intervention during drought. Waiting will reduce yield significantly.",
+        feedback:
+          "Your crops need intervention during drought. Waiting will reduce yield significantly.",
       },
     ],
   },
@@ -56,38 +71,45 @@ export const GAME_EVENTS: GameEvent[] = [
       {
         label: "Apply heavy pesticides immediately",
         isCorrect: false,
-        feedback: "Over-application harms beneficial insects and soil health. Use targeted treatments!",
+        feedback:
+          "Over-application harms beneficial insects and soil health. Use targeted treatments!",
       },
       {
         label: "Introduce natural predators (ladybugs)",
         isCorrect: true,
-        feedback: "Smart choice! Natural pest control maintains ecosystem balance.",
+        feedback:
+          "Smart choice! Natural pest control maintains ecosystem balance.",
       },
       {
         label: "Ignore it, nature will balance itself",
         isCorrect: false,
-        feedback: "While natural balance exists, intervention prevents major crop loss.",
+        feedback:
+          "While natural balance exists, intervention prevents major crop loss.",
       },
     ],
   },
   {
     title: "Soil Nutrient Deficiency",
-    description: "Your crops show yellowing leaves - a sign of nitrogen deficiency.",
+    description:
+      "Your crops show yellowing leaves - a sign of nitrogen deficiency.",
     options: [
       {
         label: "Add excessive chemical fertilizer",
         isCorrect: false,
-        feedback: "Over-fertilization pollutes groundwater and damages soil structure.",
+        feedback:
+          "Over-fertilization pollutes groundwater and damages soil structure.",
       },
       {
         label: "Apply balanced organic fertilizer",
         isCorrect: true,
-        feedback: "Perfect! Organic fertilizers improve soil health while providing nutrients.",
+        feedback:
+          "Perfect! Organic fertilizers improve soil health while providing nutrients.",
       },
       {
         label: "Do nothing and hope it improves",
         isCorrect: false,
-        feedback: "Nutrient deficiency requires action to prevent crop failure.",
+        feedback:
+          "Nutrient deficiency requires action to prevent crop failure.",
       },
     ],
   },
@@ -98,17 +120,20 @@ export const GAME_EVENTS: GameEvent[] = [
       {
         label: "Continue regular watering schedule",
         isCorrect: false,
-        feedback: "This will cause waterlogging and root damage. Adjust for weather!",
+        feedback:
+          "This will cause waterlogging and root damage. Adjust for weather!",
       },
       {
         label: "Stop watering and improve drainage",
         isCorrect: true,
-        feedback: "Excellent decision! Preventing waterlogging protects crop health.",
+        feedback:
+          "Excellent decision! Preventing waterlogging protects crop health.",
       },
       {
         label: "Add extra fertilizer before rain",
         isCorrect: false,
-        feedback: "Heavy rain will wash away fertilizer, wasting resources and polluting water.",
+        feedback:
+          "Heavy rain will wash away fertilizer, wasting resources and polluting water.",
       },
     ],
   },

@@ -1,104 +1,96 @@
-import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import farmBackground from "@/assets/farm-background.png";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const Landing = () => {
   const navigate = useNavigate();
 
   return (
-    <div 
-      className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden"
-      style={{
-        backgroundImage: `url(${farmBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        imageRendering: "pixelated"
-      }}
-    >
-      {/* Pixel overlay */}
-      <div className="absolute inset-0 bg-black/30" />
-      
-      <div className="relative z-10 w-full">
-        {/* Header */}
-        <header className="absolute top-0 left-0 right-0 p-6 flex items-center justify-between">
-          <div className="flex items-center gap-3 bg-amber-100/90 px-4 py-2 rounded-lg border-4 border-amber-900 shadow-lg">
-            <div className="w-10 h-10 rounded-sm bg-green-600 flex items-center justify-center text-2xl border-2 border-green-800">
-              🌍
-            </div>
-            <span className="text-2xl font-bold" style={{ fontFamily: "monospace" }}>AGRIGAME</span>
-          </div>
-        </header>
+    <div className="min-h-screen bg-gradient-to-b from-sky-400 to-green-600 p-4 relative pixel-perfect overflow-hidden">
+      {/* Scanline effect */}
+      <div className="absolute inset-0 scanline" />
 
-        {/* Main Content */}
-        <main className="flex flex-col items-center justify-center gap-8 max-w-4xl mx-auto text-center">
-          <div className="space-y-6 bg-amber-50/95 p-8 rounded-lg border-4 border-amber-900 shadow-2xl">
-            <h1 className="text-5xl md:text-6xl font-bold drop-shadow-lg" style={{ fontFamily: "monospace" }}>
-              🌾 AGRIGAME 🌾
+      {/* Stars background */}
+      <div className="absolute inset-0">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.5 + 0.5,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
+        {/* Title Screen */}
+        <Card className="retro-border bg-card p-8 md:p-12 retro-shadow pixelate-in max-w-2xl w-full">
+          {/* Game Logo */}
+          <div className="text-center mb-8">
+            {/* Pixel art style logo placeholder */}
+            <div className="mb-6 flex justify-center">
+              <div className="grid grid-cols-8 gap-1">
+                {/* Simple pixel art tractor icon */}
+                {[
+                  [0, 0, 1, 1, 1, 1, 0, 0],
+                  [0, 1, 1, 1, 1, 1, 1, 0],
+                  [1, 1, 0, 1, 1, 0, 1, 1],
+                  [1, 1, 1, 1, 1, 1, 1, 1],
+                  [0, 1, 1, 1, 1, 1, 1, 0],
+                  [1, 0, 1, 0, 0, 1, 0, 1],
+                  [1, 1, 1, 0, 0, 1, 1, 1],
+                  [1, 1, 1, 0, 0, 1, 1, 1],
+                ].map((row, y) =>
+                  row.map((cell, x) => (
+                    <div
+                      key={`${x}-${y}`}
+                      className={`w-3 h-3 ${
+                        cell ? "bg-primary" : "bg-transparent"
+                      }`}
+                    />
+                  ))
+                )}
+              </div>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-bold mb-2 uppercase tracking-wider retro-text-shadow text-primary">
+              AgriGame
             </h1>
-            <p className="text-2xl font-bold text-amber-900" style={{ fontFamily: "monospace" }}>
-              FARM SMART WITH NASA DATA
-            </p>
-            <p className="text-lg text-amber-800">
-              Master sustainable farming through data-driven decisions
-            </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
-            <Button 
-              className="bg-green-500 hover:bg-green-600 border-4 border-green-700 shadow-[0_6px_0_0] shadow-green-900 hover:translate-y-[-2px] active:translate-y-[2px] active:shadow-[0_4px_0_0] text-white text-xl px-8 py-6 font-bold uppercase tracking-wider rounded-sm"
-              style={{ fontFamily: "monospace" }}
-              onClick={() => navigate("/game")}
-            >
-              🌱 START GAME
+          {/* Menu */}
+          <div className="space-y-4 mt-12">
+            <Button
+              onClick={() => navigate("/map")}
+              className="w-full retro-border bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-2xl uppercase tracking-wider py-8 retro-shadow hover:translate-y-[-2px] active:translate-y-[2px] transition-transform">
+              <span className="mr-3">▶</span> START GAME
             </Button>
-            <Button 
-              className="bg-blue-500 hover:bg-blue-600 border-4 border-blue-700 shadow-[0_6px_0_0] shadow-blue-900 hover:translate-y-[-2px] active:translate-y-[2px] active:shadow-[0_4px_0_0] text-white text-xl px-8 py-6 font-bold uppercase tracking-wider rounded-sm"
-              style={{ fontFamily: "monospace" }}
-              onClick={() => navigate("/about")}
-            >
-              📖 ABOUT
+
+            <Button
+              variant="secondary"
+              className="w-full retro-border bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold text-xl uppercase tracking-wider py-6 retro-shadow hover:translate-y-[-2px] active:translate-y-[2px] transition-transform"
+              onClick={() => {}}>
+              HOW TO PLAY
+            </Button>
+
+            <Button
+              variant="outline"
+              className="w-full retro-border bg-muted hover:bg-muted/80 text-muted-foreground font-bold text-xl uppercase tracking-wider py-6 retro-shadow hover:translate-y-[-2px] active:translate-y-[2px] transition-transform"
+              onClick={() => {}}>
+              CREDITS
             </Button>
           </div>
 
-          {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 w-full">
-            <div className="bg-amber-50/95 backdrop-blur-sm p-6 rounded-lg border-4 border-amber-900 shadow-xl hover:translate-y-[-4px] transition-transform">
-              <div className="text-5xl mb-3">💧</div>
-              <h3 className="font-bold text-lg mb-2 uppercase" style={{ fontFamily: "monospace" }}>
-                SMART IRRIGATION
-              </h3>
-              <p className="text-sm text-amber-800">
-                Make water decisions based on real soil data
-              </p>
-            </div>
-            <div className="bg-amber-50/95 backdrop-blur-sm p-6 rounded-lg border-4 border-amber-900 shadow-xl hover:translate-y-[-4px] transition-transform">
-              <div className="text-5xl mb-3">📊</div>
-              <h3 className="font-bold text-lg mb-2 uppercase" style={{ fontFamily: "monospace" }}>
-                NASA DATA
-              </h3>
-              <p className="text-sm text-amber-800">
-                Powered by POWER API for accurate farming insights
-              </p>
-            </div>
-            <div className="bg-amber-50/95 backdrop-blur-sm p-6 rounded-lg border-4 border-amber-900 shadow-xl hover:translate-y-[-4px] transition-transform">
-              <div className="text-5xl mb-3">🏆</div>
-              <h3 className="font-bold text-lg mb-2 uppercase" style={{ fontFamily: "monospace" }}>
-                LEARN & GROW
-              </h3>
-              <p className="text-sm text-amber-800">
-                Earn badges and improve your farming skills
-              </p>
-            </div>
+          {/* Version info */}
+          <div className="text-center mt-12 text-sm font-bold text-muted-foreground uppercase tracking-wider">
+            <p className="blink">PRESS START</p>
+            <p className="mt-2">VERSION 1.0</p>
           </div>
-        </main>
-
-        {/* Footer */}
-        <footer className="absolute bottom-0 left-0 right-0 p-4 text-center">
-          <div className="bg-amber-900/80 text-white px-4 py-2 rounded-lg inline-block border-2 border-amber-950" style={{ fontFamily: "monospace" }}>
-            🚀 POWERED BY NASA POWER API
-          </div>
-        </footer>
+        </Card>
       </div>
     </div>
   );

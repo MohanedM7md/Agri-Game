@@ -7,6 +7,8 @@ import Landing from "./pages/Landing";
 import Game from "./pages/Game";
 import Results from "./pages/Results";
 import About from "./pages/About";
+import WorldMapScreen from "./pages/WorldMapScreen";
+import CropSelectionScreen from "./pages/CropSelectionScreen";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,7 +21,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/game" element={<Game />} />
+          <Route path="/map" element={<WorldMapScreen />} />
+          <Route path="/crops" element={<CropSelectionScreen />} />
+          <Route path="/game/:cropName" element={<Game />} />
           <Route path="/results" element={<Results />} />
           <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
