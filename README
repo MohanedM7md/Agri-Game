@@ -1,4 +1,5 @@
 Project Overview
+
 AgriData is participating in the NASA Space Apps competition to develop an intelligent system that assists farmers and agricultural engineers in managing their farms and crops more efficiently. The system leverages artificial intelligence and machine learning to monitor the health of plants, detect diseases, and provide tailored recommendations for farm management. The system focuses on the following key functionalities:
 1.	Educational Simulation:
 o	Objective: Educate users on the impact of irrigation, fertilizer, and pesticide decisions using real NASA weather and climate data to simulate crop growth and environmental responses.
